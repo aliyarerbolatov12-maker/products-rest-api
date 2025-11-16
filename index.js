@@ -1,13 +1,21 @@
 const http = require("http");
+const cors = require("./cors/cors");
 require("dotenv").config();
 
 const productsRouter = require("./router/products");
 const jsonTostringify = require("./helpers/jsonTostringify");
 
 const PORT = process.env.PORT || 3000;
+const frontendUrl = process.env.FRONTEND_URL;
 
 const server = http.createServer(async (req, res) => {
+  cors(res, frontendUrl);
   res.setHeader("Content-Type", "application/json");
+
+  if (req.method === "OPTIONS") {
+    res.writeHead(204);
+    return res.end();
+  }
 
   try {
     if (req.url === "/" && req.method === "GET") {
