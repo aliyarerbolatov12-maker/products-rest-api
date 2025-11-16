@@ -11,23 +11,37 @@ This project demonstrates:
 
 ---
 
-## Project Structure
+# Products REST API
 
-products-rest-api/
-├── router/
-│ └── products.js # Product routes
-├── helpers/ # Helper functions
-├── middleware/ # Middleware for validation
-├── constant/ # Data (products array)
-├── postman/ # Postman collection JSON
-├── documentations/
-│ └── RestApi/
-│ └── Products.md # Detailed API documentation
-├── index.js # HTTP server
-├── package.json
-└── .env
+A simple REST API for managing products built with **Node.js** and **vanilla HTTP module**.
+
+This project demonstrates:
+- CRUD operations for products (`GET`, `POST`, `PATCH`, `DELETE`)
+- ID validation middleware
+- Body parsing for requests
+- Centralized routing for `/products` endpoints
 
 ---
+
+## Project Structure
+
+```plaintext
+products-rest-api/
+├── router/
+│   └── products.js         # Product routes
+├── helpers/                # Helper functions
+├── middleware/             # Middleware for validation
+├── cors/                   # New CORS middleware folder
+│   └── cors.js             # CORS configuration or middleware file
+├── constant/               # Data (products array)
+├── postman/                # Postman collection JSON
+├── documentations/         # Detailed API documentation
+│   └── RestApi/
+│       └── Products.md     # API documentation for Products
+├── index.js                # HTTP server
+├── package.json            # Project dependencies and scripts
+└── .env                    # Environment variables
+```  
 
 ## Installation
 
