@@ -7,6 +7,7 @@ const deleteProduct = require("../helpers/deleteProduct");
 module.exports = async function productsRouter(req, res) {
   // GET /products
   if (req.url === "/products" && req.method === "GET") {
+    res.statusCode = 200;
     return res.end(jsonTostringify(products));
   }
 
@@ -51,10 +52,10 @@ module.exports = async function productsRouter(req, res) {
           res.statusCode = 404;
           return res.end(jsonTostringify({ message: "Product not found" }));
         }
+        res.statusCode = 200;
         return res.end(jsonTostringify(product));
       }
 
-      // DELETE /products/:id
       if (req.method === "DELETE") {
         try {
           const deleted = deleteProduct(id);
@@ -62,6 +63,7 @@ module.exports = async function productsRouter(req, res) {
             res.statusCode = 404;
             return res.end(jsonTostringify({ message: "Product not found" }));
           }
+          res.statusCode = 200;
           return res.end(jsonTostringify(deleted));
         } catch (err) {
           res.statusCode = 500;
@@ -84,6 +86,7 @@ module.exports = async function productsRouter(req, res) {
           if (parsed.name) product.name = parsed.name;
           if (parsed.price !== undefined) product.price = parsed.price;
 
+          res.statusCode = 200;
           return res.end(jsonTostringify(product));
         } catch (err) {
           res.statusCode = 400;
